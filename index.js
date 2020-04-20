@@ -1,8 +1,14 @@
 
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
+
+morgan.token('bodystr', (req, res) => {
+  return JSON.stringify(req.body)
+})
+app.use(morgan(':method :url :bodystr'))
 
 let persons = [
   {
@@ -27,8 +33,6 @@ let persons = [
   }
 ]
 
-
-
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
 })
@@ -51,6 +55,7 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons', (request, response) => {
+  console.log(JSON.stringify(request.body))
   const id = Math.floor(Math.random() * 100000)
   const person = {
     id: id,
