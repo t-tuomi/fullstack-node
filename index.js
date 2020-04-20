@@ -50,6 +50,26 @@ app.delete('/api/persons/:id', (request, response) => {
   console.log(`deleted person id ${id}, persons:`, persons)
 })
 
+app.post('/api/persons', (request, response) => {
+  const id = Math.floor(Math.random() * 100000)
+  const person = {
+    id: id,
+    name: request.body.name,
+    number: request.body.number
+  }
+  if (persons.find(n => n.name === person.name)) {
+    console.log(person.name, 'already in the book')
+    return response.status(400).json({error: 'name already in the book'})
+  }
+  
+  if (!person.name || !person.number) {
+    console.log('name or number missing')
+    return response.status(400).json({error: 'name or number missing'})
+  }
+  persons = persons.concat(person)
+  console.log('added', person)
+})
+
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
