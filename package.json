@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/t-tuomi/fullstack-node.git"
+    "url": "git+https://github.com/t-tuomi/fullstack-node.git"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +20,9 @@
   "homepage": "https://github.com/t-tuomi/fullstack-node#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodaemon": "0.0.5",
+    "nodemon": "^2.0.3"
   }
 }
