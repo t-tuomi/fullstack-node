@@ -6,6 +6,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+//app.use(express.static('build'))
 
 // morgan.token('bodystr', (req, res) => {
 //   return JSON.stringify(req.body)
@@ -64,6 +65,7 @@ app.post('/api/persons', (request, response) => {
     name: request.body.name,
     number: request.body.number
   }
+  console.log('person to be added is  now', person)
   if (persons.find(n => n.name === person.name)) {
     console.log(person.name, 'already in the book')
     return response.status(400).json({error: 'name already in the book'})
@@ -75,9 +77,12 @@ app.post('/api/persons', (request, response) => {
   }
   persons = persons.concat(person)
   console.log('added', person)
+  console.log('persons now: ', persons)
+  return response.json(person)
 })
 
 app.get('/api/persons', (req, res) => {
+  //console.log("get-all-backend: ", res.json(persons.data))
   res.json(persons)
 })
 
@@ -90,4 +95,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
+
+//mongodb+srv://fullstack:<password>@cluster0-bz56j.mongodb.net/test?retryWrites=true&w=majority
 
