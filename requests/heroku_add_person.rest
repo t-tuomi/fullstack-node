@@ -1,0 +1,8 @@
+post https://pacific-scrubland-25586.herokuapp.com/api/persons HTTP/1.1
+Content-Type: application/json
+
+
+{
+    "name": "Frank Drebin",
+    "number": "010-111222333"
+}
