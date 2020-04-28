@@ -34,6 +34,7 @@ switch (process.argv.length) {
         })
         break
     default:
+        console.log('Usage: mongo.js [name number]')
         mongoose.connection.close()
 }
 
